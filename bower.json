@@ -1,0 +1,25 @@
+{
+  "name": "angular-api-provider",
+  "authors": [
+    "Maxime Allanic <maxime.allanic@elkya.com>"
+  ],
+  "description": "Angular Provider for Api Provider",
+  "main": "api.service.js",
+  "keywords": [
+    "angular",
+    "api",
+    "provider"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "api-provider": "https://project.elkya.com/kyale/api-provider.git#master"
+  }
+}
