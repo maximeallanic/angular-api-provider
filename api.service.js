@@ -1,15 +1,15 @@
-/*
- * Copyright 2017 Elkya <https://elkya.com/>
+/**
+ * Copyright 2017 Elkya <https://elkya.com/> ISC
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
- * Created by mallanic at 16/6/2017
+ * @Author: Maxime Allanic <mallanic> on 21/09/2017
  */
+
 
 (function () {
     'use strict';
 
-    angular
-            .module('app.core.api', [])
+    angular.module('app.core.api', [])
             .provider('$api', apiProvider);
 
     function apiProvider($httpProvider) {
@@ -21,6 +21,21 @@
         /* Provide Moment integration */
         if (_.isFunction(moment)) {
             $apiProvider.addType('date', {
+                check: function (value, onRequest) {
+                    return onRequest ? moment.isMoment(value) : moment(value).isValid();
+                },
+                transform: function (value, onRequest) {
+                    if (moment.isMoment(value) && onRequest)
+                        return value.toISOString();
+                    else if (angular.isString(value) && onRequest)
+                        return value;
+                    else if (angular.isString(value) && !onRequest)
+                        return moment(value).startOf('day');
+                    return undefined;
+                }
+            });
+
+            $apiProvider.addType('datetime', {
                 check: function (value, onRequest) {
                     return onRequest ? moment.isMoment(value) : moment(value).isValid();
                 },
@@ -45,10 +60,6 @@
             });
 
             $apiProvider.definePromise($q.defer);
-
-            $apiProvider.defineLog($log);
-
-            ApiProvider.generateDefinition($apiProvider, true, $injector.invoke);
 
             return $apiProvider.$transform();
         };
