@@ -20,6 +20,6 @@
     "tests"
   ],
   "dependencies": {
-    "api-provider": "https://project.elkya.com/kyale/api-provider.git#master"
+    "api-provider": "https://project.elkya.com/kyale/api-provider.git"
   }
 }

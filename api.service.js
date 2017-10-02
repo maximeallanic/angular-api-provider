@@ -61,7 +61,9 @@
 
             $apiProvider.definePromise($q.defer);
 
-            return $apiProvider.$transform();
+            var $api = $apiProvider.$transform();
+            $api.getModel = $apiProvider.getModel;
+            return $api;
         };
 
         return $apiProvider;
