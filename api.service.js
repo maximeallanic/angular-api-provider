@@ -29,8 +29,12 @@
                         return value.toISOString();
                     else if (angular.isString(value) && onRequest)
                         return value;
-                    else if (angular.isString(value) && !onRequest)
-                        return moment(value).startOf('day');
+                    else if (angular.isString(value) && !onRequest) {
+                        return moment(value, [
+                            'Y-MM-DDTH:m:ssZZ',
+                            moment.ISO_8601
+                        ], true).utcOffset(value);
+                    }
                     return undefined;
                 }
             });
