@@ -9,6 +9,7 @@
 (function () {
     'use strict';
 
+
     angular.module('app.core.api', [])
             .provider('$api', apiProvider);
 
@@ -49,7 +50,10 @@
                     else if (angular.isString(value) && onRequest)
                         return value;
                     else if (angular.isString(value) && !onRequest)
-                        return moment(value);
+                        return moment(value, [
+                            'Y-MM-DDTH:m:ssZZ',
+                            moment.ISO_8601
+                        ], true);
                     return undefined;
                 }
             });
@@ -67,6 +71,7 @@
 
             var $api = $apiProvider.$transform();
             $api.getModel = $apiProvider.getModel;
+
             return $api;
         };
 
