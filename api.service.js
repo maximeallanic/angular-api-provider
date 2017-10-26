@@ -31,10 +31,10 @@
                     else if (angular.isString(value) && onRequest)
                         return value;
                     else if (angular.isString(value) && !onRequest) {
-                        return moment(value, [
+                        return moment.utc(value, [
                             'Y-MM-DDTH:m:ssZZ',
                             moment.ISO_8601
-                        ], true).utcOffset(value);
+                        ], true);
                     }
                     return undefined;
                 }
@@ -49,11 +49,12 @@
                         return value.toISOString();
                     else if (angular.isString(value) && onRequest)
                         return value;
-                    else if (angular.isString(value) && !onRequest)
-                        return moment(value, [
+                    else if (angular.isString(value) && !onRequest) {
+                        return moment.utc(value, [
                             'Y-MM-DDTH:m:ssZZ',
                             moment.ISO_8601
                         ], true);
+                    }
                     return undefined;
                 }
             });
