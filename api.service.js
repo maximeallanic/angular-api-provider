@@ -68,7 +68,9 @@
                 return $http(config);
             });
 
-            $apiProvider.definePromise($q.defer);
+            $apiProvider.definePromise(function () {
+                return $q.defer();
+            });
 
             var $api = $apiProvider.$transform();
             $api.getModel = $apiProvider.getModel;
