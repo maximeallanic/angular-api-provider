@@ -20,6 +20,6 @@
     "tests"
   ],
   "dependencies": {
-    "api-provider": "https://github.com/maximeallanic/api-provider.git"
+    "api-provider": "https://github.com/maximeallanic/api-provider.git#f09f7017f4e24284e9c27ef5529cbb22712d2d62"
   }
 }

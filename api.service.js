@@ -60,7 +60,7 @@
             });
         }
 
-        $apiProvider.$get = function ($injector, $http, $q, $log, $httpParamSerializerNoEncode) {
+        $apiProvider.$get = function ($injector, $http, $q, $httpParamSerializerNoEncode) {
             $apiProvider.defineInjector($injector.invoke);
 
             $apiProvider.defineHttpMethod(function (config) {
