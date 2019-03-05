@@ -31,7 +31,7 @@
                     else if (angular.isString(value) && onRequest)
                         return value;
                     else if (angular.isString(value) && !onRequest) {
-                        return moment.utc(value, [
+                        return moment(value, [
                             'Y-MM-DDTH:m:ssZZ',
                             moment.ISO_8601
                         ], true);
