@@ -21,6 +21,7 @@
 
         /* Provide Moment integration */
         if (_.isFunction(moment)) {
+            var timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
             $apiProvider.addType('date', {
                 check: function (value, onRequest) {
                     return onRequest ? moment.isMoment(value) : moment(value).isValid();
@@ -31,10 +32,10 @@
                     else if (angular.isString(value) && onRequest)
                         return value;
                     else if (angular.isString(value) && !onRequest) {
-                        return moment(value, [
+                        return moment.parseZone(value, [
                             'Y-MM-DDTH:m:ssZZ',
                             moment.ISO_8601
-                        ], true);
+                        ], true).zone(timezone);
                     }
                     return undefined;
                 }
@@ -50,10 +51,12 @@
                     else if (angular.isString(value) && onRequest)
                         return value;
                     else if (angular.isString(value) && !onRequest) {
-                        return moment.utc(value, [
+                        var d = moment.parseZone(value, [
                             'Y-MM-DDTH:m:ssZZ',
                             moment.ISO_8601
-                        ], true);
+                        ], true).zone(timezone);
+                        console.log(d, value);
+                        return d;
                     }
                     return undefined;
                 }
